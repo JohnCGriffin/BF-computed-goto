@@ -105,9 +105,10 @@ all instructions are iterated and their jump pointers assigned.  That change yie
 
 #### Store addresses in std::map for correctness
 
-A std::map not susceptible to having a mismatch between values and indices.  
-Where a C program is likely to require careful coordination between an enum and a disconnected array using enum values as
-indices, a C++ program can guarantee coordination using a ```std::map<TheEnum,void*>```.
+A std::map not susceptible to having a mismatch between values and indices. Where 
+a C program is likely to require careful coordination between an enum and 
+a disconnected array using enum values as indices, a C++ program can 
+guarantee coordination using a ```std::map<TheEnum,void*>```.
 
 #### Enumerate the enum
 
