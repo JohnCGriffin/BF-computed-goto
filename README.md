@@ -44,17 +44,21 @@ Having never found the need to use a goto, and seeing that the computed address 
 the idea of using it.  I suspected that a switch statement in C++ had to be just as fast, and certainly more standard.  Thus,
 I whittled away some more with decreasing returns.
 
+Decreasing returns finally hit an asymptote materially under target performance (sbfi) - time to investigate the non-standard goto
+option.
+
 ## Let's try it
 
 After realizing that both clang++ and g++ both supported the computed goto on both my OSes - MacOS Catalina and Amazon Linux, 
-I concluded it was realistically standard enough.  My execution path was previously a standard for-loop indexing into 
+I justified to myself that computed label address support was realistically standard enough.  The existing code path was 
+previously a standard for-loop indexing into 
 ```std::vector<Instruction>``` with a switch statement using an ```Action``` enum to direct traffic in a switch statement.
 I copied that procedure into another, converting that ```case``` entries into named labels for use with goto.  The main function
 was redirected to call the goto-based procedure, with the runtime dropping 20%.
 
 ## In this case, a goto is overall more legible and maintainable than the equivalent switch
 
-Despite a goal of performance, one of the reasons to use C++ anyway, the question of maintainability and
+Despite a goal of performance, a primary driver for selecting C++, the question of maintainability and
 legibility remains paramount.  I see two facets that lean in favor of the computed goto.  First, the goto targets are 
 just about as clear as their ```switch``` counterparts:
 
@@ -79,8 +83,8 @@ just about as clear as their ```switch``` counterparts:
       ptr[0] += IP->val;
       LOOP();
 ```
-Importantly, the increase in performance resulting from the computed goto more allowed removal of
-performance tweaks that intended to compact multiple BF statements into a single instruction.  The
+Importantly, the increase in performance resulting from the computed goto permitted removal of
+redundant performance tweaks that intended to compact multiple BF statements into a single instruction.  The
 net effect is that the overall program is easier to comprehend.
 
 ## Usage Hints
@@ -100,8 +104,8 @@ struct Instruction {
     void* jump;
 };
 ```
-Now, an ```Instruction*``` can jump immediately with ```goto (*instr->jump);```.  At the beginning of ```execute_with_label```,
-all instructions are iterated and their jump pointers assigned.  That change yielded a 10% performance boost.
+Now, an ```Instruction*``` can jump immediately with ```goto (*instr->jump);```.  At the beginning of ```execute```,
+all instructions are iterated and their jump pointers assigned.  That change yielded a further 10% performance boost.
 
 #### Store addresses in std::map for correctness
 
