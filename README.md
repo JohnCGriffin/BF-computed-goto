@@ -91,8 +91,8 @@ and maintainability.
 
 #### Avoid using an array of addresses
 
-While an array of addresses is about as fast as a data structure can be, a better choice is not lookup addresses at all.  
-Instead, use that table to assign addresses as a member of the instruction.  Note the ```jump``` member:
+While an array of addresses is about as fast as a data structure can be, a better choice is doing no lookup at all.  
+Instead, use a data structure in one pass to assign addresses as a member of the instruction.  Note the ```jump``` member:
 ```
 struct Instruction {
     Action action;
@@ -105,7 +105,7 @@ all instructions are iterated and their jump pointers assigned.  That change yie
 
 #### Store addresses in std::map for correctness
 
-While a std::map is not as efficient as the array, it's not susceptible to having a mismatch between values and indices.  
+A std::map not susceptible to having a mismatch between values and indices.  
 Where a C program is likely to require careful coordination between an enum and a disconnected array using enum values as
 indices, a C++ program can guarantee coordination using a ```std::map<TheEnum,void*>```.
 
