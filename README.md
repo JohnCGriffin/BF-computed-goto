@@ -4,7 +4,7 @@ This is a reasonably fast BF interpreter to demonstrate the utility of using com
 The premise is that a computed *goto can be more efficient and nearly as legible as a switch statement*
 in an appropriate context.
 
-- _If you just want to see the result, run: make demo_
+(If you just want the result: **make demo**)
 
 ## Background
 
@@ -14,8 +14,9 @@ him create a BF interpreter in Java.  After he succeeded and had gone on to anot
 several at [EsoLang](https://esolangs.org/wiki/Brainfuck), noting a few labeled "very fast" and one as _the fastest_.  Feeling a challenge,
 I whittled away hotspots on a new C++17 program to create an interpreter faster than all on the list.
 
-A day later, my satifisfaction was blown out of the water with the performance of [sbfi.c by Maxine
-Renaldo](https://github.com/rinoldm/sbfi).  Reviewing his code, I found everything seemed lucid, well commented, and normal. Suddenly, my eyes stopped at:
+A day later, I discovered the stunning performance of [sbfi.c by Maxine
+Renaldo](https://github.com/rinoldm/sbfi), more than twice the speed of others found on EsoLang.
+Reviewing his code, I found everything seemed lucid, well commented, and normal. Suddenly, my eyes stopped at:
 
 ```
 static const void *instr[9] =
@@ -80,7 +81,40 @@ just about as clear as their ```switch``` counterparts:
 ```
 Importantly, the increase in performance resulting from the computed goto more allowed removal of
 performance tweaks that intended to compact multiple BF statements into a single instruction.  The
-net effect is that the overall program is easier to comprehend.  
+net effect is that the overall program is easier to comprehend.
+
+## Usage Hints
+
+Should you find the need for the performance of the computed goto in your application, I suggest three deviations
+from the array based jump table that C++ makes easy.  One increases performance and two increase correctness
+and maintainability.
+
+#### Avoid using an array of addresses
+
+While an array of addresses is about as fast as a data structure can be, a better choice is not lookup addresses at all.  
+Instead, use that table to assign addresses as a member of the instruction.  Note the ```jump``` member:
+```
+struct Instruction {
+    Action action;
+    short val;
+    void* jump;
+};
+```
+Now, an ```Instruction*``` can jump immediately with ```goto (*instr->jump);```.  At the beginning of ```execute_with_label```,
+all instructions are iterated and their jump pointers assigned.  That change yielded a 10% performance boost.
+
+#### Store addresses in std::map for correctness
+
+While a std::map is not as efficient as the array, it's not susceptible to having a mismatch between values and indices.  
+Where a C program is likely to require careful coordination between an enum and a disconnected array using enum values as
+indices, a C++ program can guarantee coordination using a ```std::map<TheEnum,void*>```.
+
+#### Enumerate the enum
+
+Placing TERMINATE as the last enum member, the enums can be iterated in a for-loop, querying the std::map<TheEnum,void*>.  
+This is done once at the beginning of the loop to bomb with ```std::logic_error``` on an unhandled enum member.  This is 
+the runtime equivalent of compiler warning that ```switch``` is not handling an enum case.  Further, labels created but
+unreferenced in the std::map<TheEnum,void*> are flagged at compile-time.
 
 ## Demo
 
