@@ -5,21 +5,26 @@
 #include <map>
 
 namespace bf {
-    
+
     std::vector<Instruction> read_instructions(std::istream& is)
     {
-	static std::map<char,int> direction = {{'>', 1}, {'<', -1}, {'+', 1}, {'-', -1}};
+	static std::map<char,int>
+	    direction = { {'>',  1},
+			  {'<', -1},
+			  {'+',  1},
+			  {'-', -1} };
+	
 	static std::map<char,Action>
-	    charActions = {{ '>', MOVE },
-			   { '<', MOVE },
-			   { '+', INCR },
-			   { '-', INCR },
-			   { '[', FALSEJUMP },
-			   { ']', TRUEJUMP },
-			   { '.', PRINT },
-			   { ',', READ }};
+	    charActions = { { '>', MOVE },
+			    { '<', MOVE },
+			    { '+', INCR },
+			    { '-', INCR },
+			    { '[', FALSEJUMP },
+			    { ']', TRUEJUMP },
+			    { '.', PRINT },
+			    { ',', READ } };
 
-	std::vector<Instruction> instructions;
+	std::vector<Instruction> instrs;
 	char c;
 
 	while(is >> c){
@@ -31,22 +36,22 @@ namespace bf {
 		{
 		    int increment = direction.at(c);
 		    Action action = charActions.at(c);
-		    if(instructions.empty() || instructions.back().action != action){
-			instructions.push_back({ action });
+		    if(instrs.empty() || instrs.back().action != action){
+			instrs.push_back({ action });
 		    }
-		    instructions.back().val += increment;
+		    instrs.back().val += increment;
 		}
 		break;
 	    case '.':
 	    case ',':
 	    case '[':
 	    case ']':
-		instructions.push_back({ charActions.at(c) });
+		instrs.push_back({ charActions.at(c) });
 		break;
 	    }
 	}
 	
-	return instructions;
+	return instrs;
     }
 
 }

@@ -2,7 +2,7 @@
 #include "bf_instruction.hpp"
 
 namespace bf {
-    
+
     void execute(std::vector<Instruction>&  _instructions)
     {
         std::vector<char> characters(30000);
@@ -21,13 +21,13 @@ namespace bf {
                     i += instr.val;
                 }
                 break;
-            
+
             case FALSEJUMP:
                 if(!(*ptr)){
                     i += instr.val;
                 }
                 break;
-            
+
             case MOVE:
                 ptr += instr.val;
                 break;
@@ -35,7 +35,7 @@ namespace bf {
             case INCR:
                 *ptr += instr.val;
                 break;
-            
+
             case ZERO:
                 ptr[0] = 0;
                 break;
@@ -43,7 +43,7 @@ namespace bf {
             case PRINT:
                 std::cout << (*ptr);
                 break;
-            
+
             case READ:
                 std::cin.get(*ptr);
                 break;
@@ -53,8 +53,6 @@ namespace bf {
             }
         }
 
-
     }
-
 
 }

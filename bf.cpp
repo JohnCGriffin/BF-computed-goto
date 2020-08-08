@@ -5,29 +5,9 @@
 
 namespace bf {
 
-    using Instructions = std::vector<Instruction>;
-
-    // Transform [-] triple into ZERO instruction
-    static Instructions optimize(const Instructions instrs){
-	Instructions result;
-	for(auto& instr : instrs){
-	    if(instr.action == TRUEJUMP){
-		int sz = result.size();
-		if(sz > 1 && result.at(sz-1).action == INCR && result.at(sz-2).action == FALSEJUMP){
-		    result.pop_back();
-		    result.pop_back();
-		    result.push_back({ ZERO });
-		    continue;
-		}
-	    }
-	    result.push_back(instr);
-	}
-	return result;
-    }
-
-    static Instructions load_instructions(std::istream& is)
+    static std::vector<Instruction> load_instructions(std::istream& is)
     {
-        auto instructions = optimize(read_instructions(is));
+        auto instructions = read_instructions(is);
 
         // WHILE LOOP PATCHING
 	// The start of a loop is FALSEJUMP.
