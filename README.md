@@ -19,9 +19,10 @@ remained curious about other implementations.  I found several at
 away hotspots on a new C++17 program to create an interpreter faster
 than all on the list.
 
-A day later, I discovered the stunning performance of [sbfi.c by Maxine
-Renaldo](https://github.com/rinoldm/sbfi), more than twice the speed of others found on EsoLang.
-Reviewing his code, I found it lucid, well commented, and normal. Suddenly, my eyes stopped at:
+A day later, I discovered the stunning performance of [sbfi.c by
+Maxine Renaldo](https://github.com/rinoldm/sbfi), more than twice the
+speed of others found on EsoLang.  Reviewing his code, I found it
+lucid, well commented, and normal. Suddenly, my eyes stopped at:
 
 ```
 static const void *instr[9] =
@@ -38,8 +39,8 @@ static const void *instr[9] =
     };
 ```
 
-The comments below this structure explained that they were the addresses of labels.  Each label
-was reached via
+The comments below this structure explained that they were the
+addresses of labels.  Each label was reached via
 
 ```
 goto *(instr[(int)code[i]]);
@@ -113,7 +114,7 @@ simpler program.
 The demo here runs two versions, one switch-based, and one goto-based.
 The differences are seen in 
 [bf_switch.cpp](https://github.com/JohnCGriffin/BF-computed-goto/blob/master/bf_goto.cpp) 
-and [bf_goto.cpp](https://github.com/JohnCGriffin/BF-computed-goto/blob/master/bf_goto.cpp).  
+and [bf_goto.cpp](https://github.com/JohnCGriffin/BF-computed-goto/blob/master/bf_goto.cpp). 
 Depending on the runtime environment, the switch version takes from 20% to 100% more time.
 
 ## Usage Hints
