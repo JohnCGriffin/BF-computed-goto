@@ -1,4 +1,4 @@
-# Demonstration of Computed GOTO clarity and performance
+# BF Demo of Computed GOTO 
 
 This is a reasonably fast BF interpreter to demonstrate the utility of using computed goto in C++.
 The premise is that a computed *goto can be more efficient and nearly as legible as a switch statement*
@@ -44,8 +44,7 @@ Having never found the need to use a goto, and seeing that the computed address 
 the idea of using it.  I suspected that a switch statement in C++ had to be just as fast, and certainly more standard.  Thus,
 I whittled away some more with decreasing returns.
 
-Decreasing returns finally hit an asymptote materially under target performance (sbfi) - time to investigate the non-standard goto
-option.
+When the decreasing returns finally showed an asymptote, I revisited the non-standard computed goto.
 
 ## Let's try it
 
@@ -56,7 +55,7 @@ previously a standard for-loop indexing into
 I copied that procedure into another, converting that ```case``` entries into named labels for use with goto.  The main function
 was redirected to call the goto-based procedure, with the runtime dropping 20%.
 
-## In this case, a goto is overall more legible and maintainable than the equivalent switch
+## In this case, a goto is overall more legible and maintainable than a switch
 
 Despite a goal of performance, a primary driver for selecting C++, the need for maintainability and
 legibility remains paramount.  I see two facets that lean in favor of the computed goto.  First, the goto targets are 
