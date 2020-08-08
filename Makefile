@@ -10,7 +10,7 @@ OBJS = bf.o bf_instruction.o bf_io.o
 
 
 bf-demo: bf-labels bf-switch
-	time ./bf-switch mandelbrot.bf && echo && echo the SWITCH version && time ./bf-labels mandelbrot.bf > /dev/null
+	echo && time ./bf-switch mandelbrot.bf && echo && echo the GOTO version && time ./bf-labels mandelbrot.bf > /dev/null
 
 bf-labels: $(OBJS) bf_goto.o
 	$(CXX) $(CXXFLAGS) $(OBJS) bf_goto.o -o $@

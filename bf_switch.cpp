@@ -16,14 +16,6 @@ namespace bf {
 
             switch(instr.action){
 
-            case MOVE:
-                ptr += instr.val;
-                break;
-
-            case INCR:
-                *ptr += instr.val;
-                break;
-            
             case TRUEJUMP:
                 if(*ptr){
                     i += instr.val;
@@ -34,6 +26,14 @@ namespace bf {
                 if(!(*ptr)){
                     i += instr.val;
                 }
+                break;
+            
+            case MOVE:
+                ptr += instr.val;
+                break;
+
+            case INCR:
+                *ptr += instr.val;
                 break;
             
             case ZERO:
