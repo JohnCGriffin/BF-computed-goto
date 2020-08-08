@@ -1,7 +1,7 @@
 
 
 #CXXFLAGS = --std=c++11 -Wall
-#CXX = g++ -O2
+#CXX = g++ -O3
 
 CXXFLAGS = -Wall --std=c++17
 CXX = clang++ -O3
