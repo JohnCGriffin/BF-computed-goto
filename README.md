@@ -115,7 +115,8 @@ The demo here runs two versions, one switch-based, and one goto-based.
 The differences are seen in 
 [bf_switch.cpp](https://github.com/JohnCGriffin/BF-computed-goto/blob/master/bf_goto.cpp) 
 and [bf_goto.cpp](https://github.com/JohnCGriffin/BF-computed-goto/blob/master/bf_goto.cpp). 
-Depending on the runtime environment, the switch version takes from 20% to 100% more time.
+Depending on the runtime environment, 
+the [goto version reduces runtime by 15% to 60%](https://github.com/JohnCGriffin/BF-computed-goto/blob/master/RESULTS.md).
 
 ## Usage Hints
 
