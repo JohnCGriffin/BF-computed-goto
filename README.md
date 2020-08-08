@@ -55,10 +55,10 @@ previously a standard for-loop indexing into
 I copied that procedure into another, converting that ```case``` entries into named labels for use with goto.  The main function
 was redirected to call the goto-based procedure, with the runtime dropping 20%.
 
-## In this case, a goto is overall more legible and maintainable than a switch
+## In this case, the computed goto is more maintainable
 
 Despite a goal of performance, a primary driver for selecting C++, the need for maintainability and
-legibility remains paramount.  I see two facets that lean in favor of the computed goto.  First, the goto targets are 
+legibility remains paramount.  I see two facets that lean in favor of the computed goto.  First, the individual goto labels are 
 just about as clear as their ```switch``` counterparts:
 
 ### Standard C/C++
@@ -84,7 +84,12 @@ just about as clear as their ```switch``` counterparts:
 ```
 Second, the increase in performance resulting from the computed goto permitted removal of
 redundant performance tweaks that intended to compact multiple BF statements into a single instruction.  The
-net effect is that the overall program is easier to comprehend.
+net effect is that the overall program is easier to comprehend.  For instance, in the standard switch version, 
+INCR followed by a MOVE had been optimized into
+a new INCRMOVE instruction to reduce the extra switching operation.  
+In the goto version, there was no advantage to these optimizations.  Thus,
+the optimizations were removed.  It is this absence of code that weighs favorably on choice of using 
+the computed goto.
 
 ## Usage Hints
 
