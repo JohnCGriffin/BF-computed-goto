@@ -87,8 +87,8 @@ Second, the increase in performance resulting from the computed goto permitted r
 redundant performance tweaks that intended to compact multiple BF statements into a single instruction.  The
 net effect is that the overall program is easier to comprehend.  For instance, in the standard switch version, 
 INCR followed by a MOVE had been optimized into
-a new INCRMOVE instruction to reduce the extra switching operation.  In the goto version, considerable amounts
-of previous switch-bypassing optimizations became redundant and were thus excised.  The result was a far 
+a new INCRMOVE instruction to reduce the extra switching operation.  In the goto version, 
+previous switch-bypassing optimizations became redundant and were thus excised, resulting in a 
 simpler program.
 
 The demo here runs two versions, one switch-based, and one goto-based.  The differences are seen in bf_switch.cpp
