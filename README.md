@@ -46,7 +46,7 @@ I whittled away some more with decreasing returns.
 
 When the decreasing returns finally showed an asymptote, I revisited the non-standard computed goto.
 
-## Let's try it
+## Giving goto a try
 
 After realizing that both clang++ and g++ both supported the computed goto on both my OSes - MacOS Catalina and Amazon Linux, 
 I justified to myself that computed label address support was realistically standard enough.  The existing code path was 
@@ -86,10 +86,10 @@ Second, the increase in performance resulting from the computed goto permitted r
 redundant performance tweaks that intended to compact multiple BF statements into a single instruction.  The
 net effect is that the overall program is easier to comprehend.  For instance, in the standard switch version, 
 INCR followed by a MOVE had been optimized into
-a new INCRMOVE instruction to reduce the extra switching operation.  
-In the goto version, there was no advantage to these optimizations.  Thus,
-the optimizations were removed.  It is this absence of code that weighs favorably on choice of using 
-the computed goto.
+a new INCRMOVE instruction to reduce the extra switching operation.  In the goto version, considerable amounts
+of previous optimization code handled automatically because it naturally bypassed the switch path.  The code
+reduction for equivalent performance is the reason the computed goto is a maintenance win in this 
+particular situation.
 
 ## Usage Hints
 
