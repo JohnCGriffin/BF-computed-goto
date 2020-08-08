@@ -58,7 +58,7 @@ was redirected to call the goto-based procedure, with the runtime dropping 20%.
 
 ## In this case, a goto is overall more legible and maintainable than the equivalent switch
 
-Despite a goal of performance, a primary driver for selecting C++, the question of maintainability and
+Despite a goal of performance, a primary driver for selecting C++, the need for maintainability and
 legibility remains paramount.  I see two facets that lean in favor of the computed goto.  First, the goto targets are 
 just about as clear as their ```switch``` counterparts:
 
@@ -83,7 +83,7 @@ just about as clear as their ```switch``` counterparts:
       ptr[0] += IP->val;
       LOOP();
 ```
-Importantly, the increase in performance resulting from the computed goto permitted removal of
+Second, the increase in performance resulting from the computed goto permitted removal of
 redundant performance tweaks that intended to compact multiple BF statements into a single instruction.  The
 net effect is that the overall program is easier to comprehend.
 
