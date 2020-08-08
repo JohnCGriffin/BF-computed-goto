@@ -9,7 +9,7 @@ in an appropriate context.
 
 ## Background
 
-Taking the summer to do some practical programming instruction with my C.S. undergraduate son, I had
+Taking the 2020 summer to do some practical programming instruction with my C.S. undergraduate son, I had
 him create a BF interpreter in Java.  After he succeeded and had gone on to another project,
  I remained curious about other implementations.  I found
 several at [EsoLang](https://esolangs.org/wiki/Brainfuck), noting a few labeled "very fast" and one as _the fastest_.  Feeling a challenge,
