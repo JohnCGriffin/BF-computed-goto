@@ -1,4 +1,4 @@
-# BF-computed-goto
+# Demonstration of Computed GOTO clarity and performance
 
 This is a reasonably fast BF interpreter to demonstrate the utility of using computed goto in C++.
 The premise is that a computed *goto can be more efficient and nearly as legible as a switch statement*
@@ -16,7 +16,7 @@ I whittled away hotspots on a new C++17 program to create an interpreter faster 
 
 A day later, I discovered the stunning performance of [sbfi.c by Maxine
 Renaldo](https://github.com/rinoldm/sbfi), more than twice the speed of others found on EsoLang.
-Reviewing his code, I found everything seemed lucid, well commented, and normal. Suddenly, my eyes stopped at:
+Reviewing his code, I found it lucid, well commented, and normal. Suddenly, my eyes stopped at:
 
 ```
 static const void *instr[9] =
