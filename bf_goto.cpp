@@ -77,12 +77,9 @@ namespace bf {
 
     static void verify_address_table_completeness(const std::map<Action,void*>& table)
     {
-        for(int i=0;i != (int) TERMINATE;i++){
-            Action a = (Action) i;
+	for(auto a : ENUMERATED_ACTIONS){
             if(table.find(a) == table.end()){
-                std::ostringstream oss;
-                oss << a << " not in address table";
-                throw std::logic_error(oss.str());
+		throw std::logic_error(to_string(a) + " not in address table");
             }
         }
     }

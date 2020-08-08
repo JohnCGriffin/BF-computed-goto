@@ -9,7 +9,9 @@
 
 namespace bf {
 
-    enum Action { MOVE, INCR, TRUEJUMP, FALSEJUMP, ZERO, PRINT, READ, TERMINATE };
+#define ENUMERATED_ACTIONS { MOVE, INCR, TRUEJUMP, FALSEJUMP, ZERO, PRINT, READ, TERMINATE }
+    
+    enum Action ENUMERATED_ACTIONS;
 
     struct Instruction {
 	Action action;
@@ -18,6 +20,7 @@ namespace bf {
     };
 
     std::ostream& operator<<(std::ostream& os, const Action& action);
+    std::string to_string(Action);
 
 
     std::vector<Instruction> read_instructions(std::istream& is);

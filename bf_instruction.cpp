@@ -1,6 +1,8 @@
 
 #include "bf_instruction.hpp"
 
+#include <sstream>
+
 namespace bf {
 
     using namespace std;
@@ -20,6 +22,13 @@ namespace bf {
 	default:
 	    throw logic_error(__FILE__ " unhandled Action case in operator<<");
 	}
+    }
+
+    std::string to_string(Action a)
+    {
+	std::ostringstream oss;
+	oss << a;
+	return oss.str();
     }
 
 }
