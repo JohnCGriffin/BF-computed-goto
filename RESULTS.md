@@ -1,6 +1,6 @@
 ## Runtimes 
 
-On a single 2015 Macbook, using Catalina, Ubuntu 20.04, and Docker-based Linuxes inside those hosts, 
+On a single 2015 Macbook, using Catalina, Ubuntu 20.04, and Docker-based Linuxes inside those host OSes, 
 the differences are striking.
 
 |Environment                   |Compiler (-O3)         | Switch  |Goto  | reduction |
