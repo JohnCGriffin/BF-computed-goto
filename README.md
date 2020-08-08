@@ -1,6 +1,7 @@
 # BF Demo of Computed GOTO 
 
-This is a reasonably fast BF interpreter to demonstrate the utility of using computed goto in C++.
+This is a reasonably fast BF interpreter to demonstrate the utility of using goto to jump to computed labels in C++.
+From here, well use the term "computed goto".
 The premise is that a computed *goto can be more efficient and nearly as legible as a switch statement*
 in an appropriate context.
 
@@ -87,9 +88,11 @@ redundant performance tweaks that intended to compact multiple BF statements int
 net effect is that the overall program is easier to comprehend.  For instance, in the standard switch version, 
 INCR followed by a MOVE had been optimized into
 a new INCRMOVE instruction to reduce the extra switching operation.  In the goto version, considerable amounts
-of previous optimization code handled automatically because it naturally bypassed the switch path.  The code
-reduction for equivalent performance is the reason the computed goto is a maintenance win in this 
-particular situation.
+of previous switch-bypassing optimizations became redundant and were thus excised.  The result was a far 
+simpler program.
+
+The demo here runs two versions, one switch-based, and one goto-based.  The differences are seen in bf_switch.cpp
+and bf_goto.cpp.  The switch version takes 50% longer to run. 
 
 ## Usage Hints
 
