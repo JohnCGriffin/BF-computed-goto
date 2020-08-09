@@ -13,7 +13,7 @@ with my C.S. undergraduate son, I had him create a BF interpreter in
 Java.  After he succeeded and had gone on to another project, I
 remained curious about other implementations.  I found several at
 [EsoLang](https://esolangs.org/wiki/Brainfuck), noting a few labeled
-"very fast" and one as _the fastest_.  Feeling a challenge, I whittled
+"very fast".  Feeling a challenge, I whittled
 away hotspots on a new C++17 program to create an interpreter faster
 than all on the list.
 
@@ -100,7 +100,7 @@ counterparts:
 ```
 
 Second, the increase in performance resulting from the computed goto
-permitted removal of redundant performance tweaks that compatcted
+permitted removal of redundant performance tweaks that compacted
 multiple BF statements into a single instruction.  The net
 effect is that the overall program is easier to comprehend.  For
 instance, in the standard switch version, INCR followed by a MOVE had
