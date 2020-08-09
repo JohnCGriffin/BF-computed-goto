@@ -18,7 +18,6 @@ namespace bf {
         addrs[INCR]        = &&_INCR;
         addrs[TRUEJUMP]    = &&_TRUEJUMP;
         addrs[FALSEJUMP]   = &&_FALSEJUMP;
-        addrs[ZERO]        = &&_ZERO;
         addrs[PRINT]       = &&_PRINT;
         addrs[READ]        = &&_READ;
         addrs[TERMINATE]   = &&_TERMINATE;
@@ -58,10 +57,6 @@ namespace bf {
         *ptr += IP->val;
         LOOP();
         
-    _ZERO:
-        ptr[0] = 0;
-        LOOP();
-
     _PRINT:         
         std::cout << (*ptr);
         LOOP();

@@ -36,10 +36,6 @@ namespace bf {
                 *ptr += instr.val;
                 break;
 
-            case ZERO:
-                ptr[0] = 0;
-                break;
-
             case PRINT:
                 std::cout << (*ptr);
                 break;
