@@ -6,9 +6,6 @@ term "computed goto".  The premise is that a computed *goto can be
 more efficient and nearly as legible as a switch statement* in an
 appropriate context.
 
-(Note, a must faster derivative of this is 
-[BrainForked](https://github.com/JohnCGriffin/BrainForked)).
-
 ## Background
 
 Taking the 2020 summer to do some practical programming instruction
